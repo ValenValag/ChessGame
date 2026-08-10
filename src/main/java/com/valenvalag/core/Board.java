@@ -1,5 +1,7 @@
 package com.valenvalag.core;
 
+import java.util.List;
+
 public class Board {
 
     public static final Piece EMPTY = new Piece(0, true);
@@ -41,12 +43,24 @@ public class Board {
             }
     };
 
+    private final List<Character> LETTERS = List.of('a', 'b', 'c', 'd', 'e', 'f', 'g' ,'h');
     public void showBoard() {
         for (int i = 0; i < 8; i ++) {
+            // Add Y axis legend
+            System.out.print((i - 8) * -1 + "\t");
+
+            // Print each col and row value
             for (int j = 0; j < 8; j ++) {
                 System.out.print(board[i][j].getIcon() + "\t");
             }
+            // Add new line each row
             System.out.println();
+        }
+
+        // Add X axis legend
+        System.out.print("\t");
+        for (int i = 0; i < 8; i ++) {
+            System.out.print(LETTERS.get(i) + "\t");
         }
     }
 
