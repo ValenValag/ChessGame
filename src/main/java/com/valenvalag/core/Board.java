@@ -4,22 +4,24 @@ import java.util.List;
 
 public class Board {
 
-    public static final Piece EMPTY = new Piece(0, true);
+    // PIECES
+    private static final Piece EMPTY = new Piece(0, true);
 
-    public static final Piece WHITE_PAWN = new Piece(1, true);
-    public static final Piece WHITE_KNIGHT = new Piece(2, true);
-    public static final Piece WHITE_BISHOP = new Piece(3, true);
-    public static final Piece WHITE_ROOK = new Piece(4, true);
-    public static final Piece WHITE_QUEEN = new Piece(5, true);
-    public static final Piece WHITE_KING = new Piece(6, true);
+    private static final Piece WHITE_PAWN = new Piece(1, true);
+    private static final Piece WHITE_KNIGHT = new Piece(2, true);
+    private static final Piece WHITE_BISHOP = new Piece(3, true);
+    private static final Piece WHITE_ROOK = new Piece(4, true);
+    private static final Piece WHITE_QUEEN = new Piece(5, true);
+    private static final Piece WHITE_KING = new Piece(6, true);
 
-    public static final Piece BLACK_PAWN = new Piece(1, false);
-    public static final Piece BLACK_KNIGHT = new Piece(2, false);
-    public static final Piece BLACK_BISHOP = new Piece(3, false);
-    public static final Piece BLACK_ROOK = new Piece(4, false);
-    public static final Piece BLACK_QUEEN = new Piece(5, false);
-    public static final Piece BLACK_KING = new Piece(6, false);
+    private static final Piece BLACK_PAWN = new Piece(1, false);
+    private static final Piece BLACK_KNIGHT = new Piece(2, false);
+    private static final Piece BLACK_BISHOP = new Piece(3, false);
+    private static final Piece BLACK_ROOK = new Piece(4, false);
+    private static final Piece BLACK_QUEEN = new Piece(5, false);
+    private static final Piece BLACK_KING = new Piece(6, false);
 
+    // BOARD
     private final Piece[][] board= {
             {
                     BLACK_ROOK, BLACK_KNIGHT, BLACK_BISHOP, BLACK_QUEEN,
@@ -43,7 +45,12 @@ public class Board {
             }
     };
 
-    private final List<Character> LETTERS = List.of('a', 'b', 'c', 'd', 'e', 'f', 'g' ,'h');
+    private static final List<Character> LETTERS = List.of('a', 'b', 'c', 'd', 'e', 'f', 'g' ,'h');
+
+    public List<Character> getLETTERS() {
+        return LETTERS;
+    }
+
     public void showBoard() {
         for (int i = 0; i < 8; i ++) {
             // Add Y axis legend
@@ -63,5 +70,18 @@ public class Board {
             System.out.print(LETTERS.get(i) + "\t");
         }
     }
+
+    public void movePiece(int[] positions) {
+        for (int i = 0; i < 4; i ++) {
+            if (i % 2 != 0) {
+                positions[i] *= -1;
+                positions[i] += 8;
+            }
+        }
+
+        board[positions[3]][positions[2]] = board[positions[1]][positions[0]];
+        board[positions[1]][positions[0]] = EMPTY;
+    }
+
 
 }
