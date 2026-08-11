@@ -5,21 +5,21 @@ import java.util.List;
 public class Board {
 
     // PIECES
-    private static final Piece EMPTY = new Piece(0, true);
+    private static final Piece EMPTY = new Piece(null, true);
 
-    private static final Piece WHITE_PAWN = new Piece(1, true);
-    private static final Piece WHITE_KNIGHT = new Piece(2, true);
-    private static final Piece WHITE_BISHOP = new Piece(3, true);
-    private static final Piece WHITE_ROOK = new Piece(4, true);
-    private static final Piece WHITE_QUEEN = new Piece(5, true);
-    private static final Piece WHITE_KING = new Piece(6, true);
+    private static final Piece WHITE_PAWN = new Piece(PieceType.PAWN, true);
+    private static final Piece WHITE_KNIGHT = new Piece(PieceType.KNIGHT, true);
+    private static final Piece WHITE_BISHOP = new Piece(PieceType.BISHOP, true);
+    private static final Piece WHITE_ROOK = new Piece(PieceType.ROOK, true);
+    private static final Piece WHITE_QUEEN = new Piece(PieceType.QUEEN, true);
+    private static final Piece WHITE_KING = new Piece(PieceType.KING, true);
 
-    private static final Piece BLACK_PAWN = new Piece(1, false);
-    private static final Piece BLACK_KNIGHT = new Piece(2, false);
-    private static final Piece BLACK_BISHOP = new Piece(3, false);
-    private static final Piece BLACK_ROOK = new Piece(4, false);
-    private static final Piece BLACK_QUEEN = new Piece(5, false);
-    private static final Piece BLACK_KING = new Piece(6, false);
+    private static final Piece BLACK_PAWN = new Piece(PieceType.PAWN, false);
+    private static final Piece BLACK_KNIGHT = new Piece(PieceType.KNIGHT, false);
+    private static final Piece BLACK_BISHOP = new Piece(PieceType.BISHOP, false);
+    private static final Piece BLACK_ROOK = new Piece(PieceType.ROOK, false);
+    private static final Piece BLACK_QUEEN = new Piece(PieceType.QUEEN, false);
+    private static final Piece BLACK_KING = new Piece(PieceType.KING, false);
 
     // BOARD
     private final Piece[][] board= {
