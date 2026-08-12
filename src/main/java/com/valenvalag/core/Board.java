@@ -1,25 +1,25 @@
 package com.valenvalag.core;
 
+import com.valenvalag.pieces.*;
+
 import java.util.List;
 
 public class Board {
+    private static final Piece EMPTY = null;
 
-    // PIECES
-    private static final Piece EMPTY = new Piece(null, true);
+    private static final Piece WHITE_PAWN = new Pawn(true);
+    private static final Piece WHITE_KNIGHT = new Knight(true);
+    private static final Piece WHITE_BISHOP = new Bishop(true);
+    private static final Piece WHITE_ROOK = new Rook(true);
+    private static final Piece WHITE_QUEEN = new Queen(true);
+    private static final Piece WHITE_KING = new King(true);
 
-    private static final Piece WHITE_PAWN = new Piece(PieceType.PAWN, true);
-    private static final Piece WHITE_KNIGHT = new Piece(PieceType.KNIGHT, true);
-    private static final Piece WHITE_BISHOP = new Piece(PieceType.BISHOP, true);
-    private static final Piece WHITE_ROOK = new Piece(PieceType.ROOK, true);
-    private static final Piece WHITE_QUEEN = new Piece(PieceType.QUEEN, true);
-    private static final Piece WHITE_KING = new Piece(PieceType.KING, true);
-
-    private static final Piece BLACK_PAWN = new Piece(PieceType.PAWN, false);
-    private static final Piece BLACK_KNIGHT = new Piece(PieceType.KNIGHT, false);
-    private static final Piece BLACK_BISHOP = new Piece(PieceType.BISHOP, false);
-    private static final Piece BLACK_ROOK = new Piece(PieceType.ROOK, false);
-    private static final Piece BLACK_QUEEN = new Piece(PieceType.QUEEN, false);
-    private static final Piece BLACK_KING = new Piece(PieceType.KING, false);
+    private static final Piece BLACK_PAWN = new Pawn(false);
+    private static final Piece BLACK_KNIGHT = new Knight(false);
+    private static final Piece BLACK_BISHOP = new Bishop(false);
+    private static final Piece BLACK_ROOK = new Rook(false);
+    private static final Piece BLACK_QUEEN = new Queen(false);
+    private static final Piece BLACK_KING = new King(false);
 
     // BOARD
     private final Piece[][] board= {
@@ -58,7 +58,7 @@ public class Board {
 
             // Print each col and row value
             for (int j = 0; j < 8; j ++) {
-                System.out.print(board[i][j].getIcon() + "\t");
+                System.out.print((board[i][j] == null ? "·" : board[i][j].getIcon()) + "\t");
             }
             // Add new line each row
             System.out.println();
@@ -71,7 +71,7 @@ public class Board {
         }
     }
 
-    public void movePiece(int[] positions) {
+    public boolean movePiece(int[] positions) {
         for (int i = 0; i < 4; i ++) {
             if (i % 2 != 0) {
                 positions[i] *= -1;
@@ -79,9 +79,19 @@ public class Board {
             }
         }
 
-        board[positions[3]][positions[2]] = board[positions[1]][positions[0]];
+        Piece piece = board[positions[1]][positions[0]];
+        if (!piece.isValidMovement(this, positions)) {
+            System.out.println("Wrong movement!");
+            return false;
+        }
+
+        board[positions[3]][positions[2]] = piece;
         board[positions[1]][positions[0]] = EMPTY;
+        return true;
     }
 
+    public Piece getPiece(int row, int col) {
+        return board[col][row];
+    }
 
 }

@@ -8,8 +8,8 @@ public class TurnManager {
     private final Scanner scanner;
     private int turn;
     private boolean whitesTurn;
-    private boolean gameRunning;
-    private List<Character> LETTERS;
+    private final boolean gameRunning;
+    private final List<Character> LETTERS;
     public TurnManager(Board board, Scanner scanner) {
         this.board = board;
         this.scanner = scanner;
@@ -77,7 +77,11 @@ public class TurnManager {
 
         int[] positions = formatMovement(movement);
 
-        board.movePiece(positions);
+        boolean out = board.movePiece(positions);
+
+        if (!out) {
+            return;
+        }
 
         turn ++;
     }
