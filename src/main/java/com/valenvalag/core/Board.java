@@ -72,12 +72,6 @@ public class Board {
     }
 
     public boolean movePiece(int[] positions) {
-        for (int i = 0; i < 4; i ++) {
-            if (i % 2 != 0) {
-                positions[i] *= -1;
-                positions[i] += 8;
-            }
-        }
 
         Piece piece = board[positions[1]][positions[0]];
         if (!piece.isValidMovement(this, positions)) {

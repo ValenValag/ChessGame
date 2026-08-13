@@ -64,6 +64,13 @@ public class TurnManager {
         positions[2] = LETTERS.indexOf(to.charAt(0));
         positions[3] = to.charAt(1) - '0';
 
+        for (int i = 0; i < 4; i ++) {
+            if (i % 2 != 0) {
+                positions[i] *= -1;
+                positions[i] += 8;
+            }
+        }
+
         return positions;
     }
 
