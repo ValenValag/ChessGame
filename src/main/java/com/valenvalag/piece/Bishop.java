@@ -1,8 +1,6 @@
-package com.valenvalag.pieces;
+package com.valenvalag.piece;
 
 import com.valenvalag.core.Board;
-import com.valenvalag.core.Piece;
-import com.valenvalag.core.PieceType;
 
 public class Bishop extends Piece {
 

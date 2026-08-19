@@ -1,6 +1,6 @@
-package com.valenvalag.core;
+package com.valenvalag.piece;
 
-import java.util.List;
+import com.valenvalag.core.Board;
 
 public abstract class Piece {
 

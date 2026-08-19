@@ -1,6 +1,6 @@
 package com.valenvalag.core;
 
-import com.valenvalag.pieces.*;
+import com.valenvalag.piece.*;
 
 import java.util.List;
 
